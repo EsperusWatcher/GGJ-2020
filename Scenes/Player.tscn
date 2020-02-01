@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Textures/Test_player/Test_player_2_running.png" type="Texture" id=2]
+[ext_resource path="res://Textures/Player_idle_2.png" type="Texture" id=2]
 [ext_resource path="res://AnimationSheets/Test_attack_anim.png" type="Texture" id=3]
 [ext_resource path="res://Textures/Test_textures/Test_Bg.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=5]
@@ -9,7 +9,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "Walking"
-length = 0.65
+length = 2.0
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -18,14 +18,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3, 0.5, 0.62 ),
+"times": PoolRealArray( 0, 0.7, 1.04, 1.46, 1.77 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4 ]
+"values": [ 0, 1, 1, 2, 2 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=9]
-radius = 8.15135
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 8.80717, 16.5434 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Strike"
@@ -131,11 +131,11 @@ speed = Vector2( 4500, 4000 )
 gravity = 10000.0
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 1.08809, -2.16439 )
-scale = Vector2( 4, 4 )
+scale = Vector2( 0.299194, 0.299194 )
 texture = ExtResource( 2 )
-hframes = 5
-frame = 4
+hframes = 3
+frame = 2
+region_rect = Rect2( 20, 0, 20, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Walking = SubResource( 1 )
@@ -157,7 +157,7 @@ position = Vector2( -65.5013, 28.416 )
 scale = Vector2( 4, 4 )
 
 [node name="Sprite" type="Sprite" parent="LeftHit"]
-position = Vector2( -9.17197, -6.48348 )
+position = Vector2( 0.481628, -30.3155 )
 scale = Vector2( 0.58129, 0.689998 )
 texture = ExtResource( 3 )
 flip_h = true
@@ -199,17 +199,17 @@ offset = Vector2( 960, 540 )
 transform = Transform2D( 1, 0, 0, 1, 960, 540 )
 
 [node name="Sprite" type="Sprite" parent="BG_Layer"]
-position = Vector2( 2.2439, 4.48779 )
-scale = Vector2( 3, 3 )
+position = Vector2( 7.78587, 5.75594 )
+scale = Vector2( 1.00527, 1.00527 )
 texture = ExtResource( 4 )
 
 [node name="HUD_Layer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="HUD_Layer" instance=ExtResource( 5 )]
-margin_left = -1.65283
-margin_top = 2.95111
-margin_right = 162.347
-margin_bottom = 86.9512
+margin_left = 4.00843
+margin_top = 1.19661
+margin_right = 168.008
+margin_bottom = 85.1967
 
 [node name="Area2D" type="Area2D" parent="." groups=[
 "player",
@@ -218,7 +218,7 @@ scale = Vector2( 4, 4 )
 script = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -5.00024, 1.78118 )
+position = Vector2( -3.56739, 1.68566 )
 scale = Vector2( 4, 4 )
 shape = SubResource( 8 )
 
