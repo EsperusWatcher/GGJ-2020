@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Textures/Test_tile.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Beating_Dummy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Lantern.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 120, 0, 120, 120, 0, 120 )
@@ -41,26 +41,11 @@ tile_data = PoolIntArray( -131072, 0, 0, -131070, 0, 0, -131064, 0, 0, -131062, 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 103.08, 60.8391 )
 
-[node name="Beating dummy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1249.3, 71.8178 )
+[node name="Lantern" parent="." instance=ExtResource( 4 )]
+position = Vector2( 2434.71, -64.5746 )
 
-[node name="Beating dummy2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 168.689, 556.171 )
+[node name="Lantern2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1679.88, 537.331 )
 
-[node name="Beating dummy3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1127.37, 551.16 )
-
-[node name="Beating dummy4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 2312.82, -55.9231 )
-
-[node name="Beating dummy5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 2332.79, 539.258 )
-
-[node name="Beating dummy6" parent="." instance=ExtResource( 3 )]
-position = Vector2( 3591.06, -47.9341 )
-
-[node name="Beating dummy7" parent="." instance=ExtResource( 3 )]
-position = Vector2( 2093.12, 311.571 )
-
-[node name="Beating dummy8" parent="." instance=ExtResource( 3 )]
-position = Vector2( 3890.65, 311.571 )
+[node name="Lantern3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1182.09, 55.8066 )
