@@ -24,8 +24,8 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4 ]
 }
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 8.44381, 17.021 )
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 8.15135
 
 [sub_resource type="Animation" id=3]
 resource_name = "Strike"
@@ -84,7 +84,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 172.767, 36.6518 )
+extents = Vector2( 3.37087, 3.57008 )
 
 [sub_resource type="Animation" id=6]
 resource_name = "Strike"
@@ -116,20 +116,23 @@ tracks/1/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 189.224, 36.9745 )
+extents = Vector2( 3.45074, 3.68915 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 30.9712, 54.784 )
+extents = Vector2( 2.77505, 4.51474 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
 ]]
+scale = Vector2( 2, 2 )
 collision_mask = 8
 script = ExtResource( 1 )
+speed = Vector2( 4500, 4000 )
+gravity = 10000.0
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 1.08809, -2.16439 )
-scale = Vector2( 3.04257, 3 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 2 )
 hframes = 5
 frame = 4
@@ -138,19 +141,24 @@ frame = 4
 anims/Walking = SubResource( 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2( -9.97534, 2.00459 )
-scale = Vector2( 3, 3 )
-shape = SubResource( 2 )
+position = Vector2( -20, 10 )
+scale = Vector2( 4, 4 )
+shape = SubResource( 9 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 3, 3 )
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 9.0
 
 [node name="LeftHit" type="Area2D" parent="."]
 position = Vector2( -65.5013, 28.416 )
+scale = Vector2( 4, 4 )
 
 [node name="Sprite" type="Sprite" parent="LeftHit"]
-position = Vector2( 0.481628, -30.3155 )
-scale = Vector2( 1.48163, 2.35777 )
+position = Vector2( -9.17197, -6.48348 )
+scale = Vector2( 0.58129, 0.689998 )
 texture = ExtResource( 3 )
 flip_h = true
 hframes = 6
@@ -161,17 +169,18 @@ anims/Strike = SubResource( 3 )
 anims/Strike1 = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHit"]
-position = Vector2( -4.68452, -29.2267 )
-scale = Vector2( 0.3, 1 )
+position = Vector2( -8.62948, -6.54321 )
+scale = Vector2( 4, 4 )
 shape = SubResource( 5 )
 disabled = true
 
 [node name="RightHit" type="Area2D" parent="."]
 position = Vector2( 75.4417, 35.6354 )
+scale = Vector2( 4, 4 )
 
 [node name="Sprite" type="Sprite" parent="RightHit"]
-position = Vector2( 2.41389, -38.6219 )
-scale = Vector2( 1.56898, 2.37935 )
+position = Vector2( 1.24272, -8.28888 )
+scale = Vector2( 0.690611, 0.733872 )
 texture = ExtResource( 3 )
 hframes = 6
 
@@ -179,8 +188,8 @@ hframes = 6
 anims/Strike = SubResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightHit"]
-position = Vector2( -23.6829, -34.0414 )
-scale = Vector2( 0.3, 1 )
+position = Vector2( 1.03091, -8.63267 )
+scale = Vector2( 4, 4 )
 shape = SubResource( 7 )
 disabled = true
 
@@ -191,6 +200,7 @@ transform = Transform2D( 1, 0, 0, 1, 960, 540 )
 
 [node name="Sprite" type="Sprite" parent="BG_Layer"]
 position = Vector2( 2.2439, 4.48779 )
+scale = Vector2( 3, 3 )
 texture = ExtResource( 4 )
 
 [node name="HUD_Layer" type="CanvasLayer" parent="."]
@@ -204,10 +214,12 @@ margin_bottom = 86.9512
 [node name="Area2D" type="Area2D" parent="." groups=[
 "player",
 ]]
+scale = Vector2( 4, 4 )
 script = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -11.1908, 2.08201 )
+position = Vector2( -5.00024, 1.78118 )
+scale = Vector2( 4, 4 )
 shape = SubResource( 8 )
 
 [node name="Timer" type="Timer" parent="."]
