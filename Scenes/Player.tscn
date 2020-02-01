@@ -1,13 +1,19 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Test_player/Test_player_2_running.png" type="Texture" id=2]
 [ext_resource path="res://AnimationSheets/Test_attack_anim.png" type="Texture" id=3]
 [ext_resource path="res://Textures/Test_textures/Test_Bg.png" type="Texture" id=4]
-[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scripts/OnHit.gd" type="Script" id=6]
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+gravity = Vector3( -2, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[sub_resource type="Animation" id=2]
 resource_name = "Walking"
 length = 0.65
 step = 0.01
@@ -23,9 +29,21 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Particles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.31, 0.33, 0.51 ),
+"transitions": PoolRealArray( 1, 1, 1, 2 ),
+"update": 1,
+"values": [ false, true, false, true ]
+}
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8.44381, 17.021 )
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 12.5039, 16.2371 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "Strike"
@@ -83,11 +101,10 @@ tracks/1/keys = {
 "values": [ true, false, true ]
 }
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 172.767, 36.6518 )
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 96.6492, 36.6518 )
 
-[sub_resource type="Animation" id=6]
-resource_name = "Strike"
+[sub_resource type="Animation" id=7]
 length = 0.25
 step = 0.01
 tracks/0/type = "value"
@@ -116,15 +133,15 @@ tracks/1/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 189.224, 36.9745 )
+extents = Vector2( 109.613, 36.9745 )
 
-[sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 30.9712, 54.784 )
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 44.608, 56.1389 )
 
 [node name="Player" type="KinematicBody2D" groups=[
-"player",
+"Player",
 ]]
-collision_mask = 8
+collision_mask = 12
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -134,13 +151,25 @@ texture = ExtResource( 2 )
 hframes = 5
 frame = 4
 
+[node name="Particles2D" type="Particles2D" parent="Sprite"]
+position = Vector2( -2.71682, 19.7344 )
+rotation = 2.92517
+scale = Vector2( 1, 0.333 )
+emitting = false
+amount = 100
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.09
+randomness = 0.42
+process_material = SubResource( 1 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-anims/Walking = SubResource( 10 )
+anims/Walking = SubResource( 2 )
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2( -9.97534, 2.00459 )
+position = Vector2( 3.818, -2.67994 )
 scale = Vector2( 3, 3 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -161,9 +190,9 @@ anims/Strike = SubResource( 4 )
 anims/Strike1 = SubResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHit"]
-position = Vector2( -4.68452, -29.2267 )
+position = Vector2( 0, -28.9664 )
 scale = Vector2( 0.3, 1 )
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 disabled = true
 
 [node name="RightHit" type="Area2D" parent="."]
@@ -176,40 +205,28 @@ texture = ExtResource( 3 )
 hframes = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RightHit/Sprite"]
-anims/Strike = SubResource( 6 )
+anims/Strike = SubResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightHit"]
-position = Vector2( -23.6829, -34.0414 )
+position = Vector2( 0, -35.8631 )
 scale = Vector2( 0.3, 1 )
 shape = SubResource( 8 )
 disabled = true
 
-[node name="BG_Layer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -100
 offset = Vector2( 960, 540 )
 transform = Transform2D( 1, 0, 0, 1, 960, 540 )
 
-[node name="Sprite" type="Sprite" parent="BG_Layer"]
+[node name="Sprite" type="Sprite" parent="CanvasLayer"]
 position = Vector2( 2.2439, 4.48779 )
 texture = ExtResource( 4 )
 
-[node name="HUD_Layer" type="CanvasLayer" parent="."]
-
-[node name="HUD" parent="HUD_Layer" instance=ExtResource( 5 )]
-margin_left = -1.65283
-margin_top = 2.95111
-margin_right = 162.347
-margin_bottom = 86.9512
-
 [node name="Area2D" type="Area2D" parent="." groups=[
-"player",
+"Player",
 ]]
-script = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -11.1908, 2.08201 )
-shape = SubResource( 11 )
-
-[node name="Timer" type="Timer" parent="."]
+shape = SubResource( 9 )
 [connection signal="area_entered" from="LeftHit" to="." method="_on_LeftHit_area_entered"]
 [connection signal="area_entered" from="RightHit" to="." method="_on_RightHit_area_entered"]
