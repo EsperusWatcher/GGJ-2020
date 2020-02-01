@@ -8,9 +8,6 @@ anchor_bottom = 1.0
 margin_top = -540.0
 margin_bottom = -1080.0
 rect_scale = Vector2( 5, 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 

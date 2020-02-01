@@ -6,6 +6,8 @@ var anim_node: AnimationPlayer
 # to detect collisions with enemies
 var enemy_collision_detector: CollisionObject2D
 
+var invincible_timer: Timer
+
 # b r u h
 # pretty sure this can be made as one block
 # but ehm..
@@ -16,7 +18,6 @@ var enemy_melee_left: Area2D
 
 var direction = Vector2.ZERO
 var hp = 100
-
 var canLit : bool = false
 var lanternInArea
 
@@ -29,14 +30,20 @@ func _ready():
 	enemy_melee_left = get_node("LeftHit")
 	enemy_melee_right = get_node("RightHit")
 	
+	invincible_timer = get_node("Timer")
+	invincible_timer.set("one_shot", true)
+	
+	get_node("HUD_Layer/HUD/VBoxContainer/Bars/Bar/Gauge").set_value(hp)
+	
 	var allScene = get_parent().get_children()
 	for i in allScene:
 		i.connect("CanLit", self, "enterLanternArea")
 		i.connect("CannotLit", self, "exitLanternArea")
-		
-
 
 func _process(delta):
+	if hp <= 0:
+		pass # End of the night round
+		
 	if Input.is_action_just_pressed("attack_melee"):
 		print("attack ")
 		if (sprite_node.flip_h == true): 
@@ -45,11 +52,18 @@ func _process(delta):
 		else:
 			print("left")
 			left_attack.play("Strike1")
-	if(Input.is_action_just_pressed("Use")):
+	
+	if Input.is_action_just_pressed("Use"):
 		lanternInArea.lit()
 
-func detect_enemy_overlap():
-	pass
+func take_damage():
+	if invincible_timer.get("time_left") == 0:
+		print("hp down")
+		hp -= 25
+		invincible_timer.start(2)
+	else:
+		print("invincible")
+	get_node("HUD_Layer/HUD/VBoxContainer/Bars/Bar/Gauge").set_value(hp)	
 
 func _physics_process(delta):
 	var direction = get_direction()
@@ -62,9 +76,10 @@ func _physics_process(delta):
 	velocity = calculate_move_velocity(velocity, speed, direction)
 
 	if velocity.x != 0:
-		anim_node.set_autoplay("Walking")
+		anim_node.play("Walking")
 	else:
-		anim_node.stop(0)
+		anim_node.stop(1)
+		anim_node.clear_caches()
 
 	velocity = move_and_slide(velocity, FLOOR_NORMAL)
 	
@@ -89,19 +104,17 @@ func calculate_move_velocity(
 
 # detects if enemy is in the range of left hit area
 func _on_LeftHit_area_entered(area):
-	if area.is_in_group("hit"):
-		print("hit")
-		area.take_damage()
-	else:
-		print("uh..")
+	if (not area.is_in_group("Neutral")):
+		if area.is_in_group("hit"):
+			print("hit")
+			area.take_damage()
 
 # detects if enemy is in the range of right hit area
 func _on_RightHit_area_entered(area):
-	if area.is_in_group("hit"):
-		print("hit")
-		area.take_damage()
-	else:
-		print("uhh..")
+	if (not area.is_in_group("Neutral")): 
+		if area.is_in_group("hit"):
+			print("hit")
+			area.take_damage()
 
 func enterLanternArea(lantern):
 	lanternInArea = lantern

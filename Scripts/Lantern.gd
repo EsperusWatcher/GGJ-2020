@@ -59,20 +59,15 @@ func becomeUnCorrupt():
 	var sprite : Sprite = get_node("Sprite")
 	sprite.set_texture(extinctLantern)
 
-
 func _on_LitLatternArea_area_entered(area):
-	if area.is_in_group("Player") : 
+	if area.is_in_group("player") : 
 		print("CAN LIT")
 		emit_signal("CanLit", self)
-		pass
-	pass # Replace with function body.
 
 func lit():
 	isLit = true
 	var sprite : Sprite = get_node("Sprite")
 	sprite.set_texture(litLantern)
 
-
 func _on_LitLatternArea_area_exited(area):
 	emit_signal("CannotLit")
-	pass # Replace with function body.
