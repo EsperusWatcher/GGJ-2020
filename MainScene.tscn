@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20.3528, 7.54544 )
+
+[node name="MainNode" type="Node2D"]
+
+[node name="Tiles" type="Node" parent="."]
+
+[node name="Floor 1" type="StaticBody2D" parent="Tiles"]
+
+[node name="Sprite" type="Sprite" parent="Tiles/Floor 1"]
+position = Vector2( 279.58, 301.019 )
+offset = Vector2( -36, 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles/Floor 1"]
+position = Vector2( 243.943, 310.211 )
+shape = SubResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 229.915, -2.99368 )
