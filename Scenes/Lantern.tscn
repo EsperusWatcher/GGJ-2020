@@ -10,7 +10,7 @@ extents = Vector2( 12.7986, 54.0264 )
 extents = Vector2( 18.1264, 57.4322 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 499.04, 339.079 )
+extents = Vector2( 443.806, 300.091 )
 
 [node name="Lantern" type="StaticBody2D"]
 scale = Vector2( 4, 6 )

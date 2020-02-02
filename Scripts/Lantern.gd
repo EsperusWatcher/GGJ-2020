@@ -18,10 +18,11 @@ var spawnPosition : int = 1
 var countOfChildOnStart : int = 0
 var canSpawn : bool = false
 
-export var damageTaken = 50
+export var damageTaken = 20
 export var shield : int = 100
-export var spawnRate : float = 4
+export var spawnRate : float = 2
 export var countOfEnemiesInOneTime : int = 5
+export var timerIncreaseTime : float = 15
 
 var stateForEnemys = 0
 
@@ -30,7 +31,7 @@ var corruptState
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	corruptState = corruptStates.LIT
+	corruptState = corruptStates.CORRUPT
 	countOfChildOnStart = get_child_count()
 	spawnTimer = get_node("SpawnTimer")
 	spawnTimer.wait_time = spawnRate
@@ -112,6 +113,7 @@ func killAndRegen(): # Kill all minions remainig - taking damage - and regen thi
 
 func playerTryLit():
 	if corruptState == corruptStates.EXTINCT:
+		increaseNightTimer()
 		lit()
 
 
@@ -120,3 +122,10 @@ func _on_warningZone_area_entered(area):
 		print("SetWarning")
 		emit_signal("warning")
 		stateForEnemys = 1
+
+func increaseNightTimer():
+	var buf = dayNightSystem.nightTimer.time_left
+	dayNightSystem.nightTimer.stop()
+	dayNightSystem.nightTimer.set_wait_time( buf + timerIncreaseTime)
+	dayNightSystem.nightTimer.start()
+

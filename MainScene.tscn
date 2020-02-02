@@ -199,6 +199,18 @@ speed = Vector2( 3000, 4000 )
 [node name="Lantern" parent="." instance=ExtResource( 4 )]
 position = Vector2( 5403.23, 1711.87 )
 
+[node name="Lantern2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 10068.9, 2590.29 )
+
+[node name="Lantern3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 12137.3, 8001.81 )
+
+[node name="Lantern4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 7856.23, 6222.02 )
+
+[node name="Lantern5" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1121.9, 4442.23 )
+
 [node name="DayNightSystem" parent="." instance=ExtResource( 5 )]
 
 [node name="AIsystem" parent="." instance=ExtResource( 6 )]

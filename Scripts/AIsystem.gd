@@ -2,7 +2,7 @@ extends Node
 
 var enemysInAttack = [] # All minios that attack
 var nowInAttack = 0  # how much minions in attack RIGHT NOW 
-export var attackAtTheSameTimeCount = 1 # How much CAN attack at same time
+export var attackAtTheSameTimeCount = 2 # How much CAN attack at same time
 var active : bool = false
 
 var dayNightSystem
