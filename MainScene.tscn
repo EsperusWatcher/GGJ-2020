@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scripts/MainLogic.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Lantern.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/DayNightSystem.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Textures/Tileset.png" type="Texture" id=5]
+[ext_resource path="res://Sounds/music.wav" type="AudioStream" id=3]
+[ext_resource path="res://Scenes/Lantern.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/DayNightSystem.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Textures/Tileset.png" type="Texture" id=6]
 
 [sub_resource type="OccluderPolygon2D" id=21]
 closed = false
@@ -80,7 +81,7 @@ points = PoolVector2Array( 0, 0, 220, 0, 220, 226, 0, 226 )
 
 [sub_resource type="TileSet" id=1]
 0/name = "Tileset.png 0"
-0/texture = ExtResource( 5 )
+0/texture = ExtResource( 6 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 49, 50, 220, 226 )
@@ -97,7 +98,7 @@ points = PoolVector2Array( 0, 0, 220, 0, 220, 226, 0, 226 )
 } ]
 0/z_index = 0
 1/name = "Tileset.png 1"
-1/texture = ExtResource( 5 )
+1/texture = ExtResource( 6 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 269, 50, 220, 226 )
@@ -114,7 +115,7 @@ points = PoolVector2Array( 0, 0, 220, 0, 220, 226, 0, 226 )
 } ]
 1/z_index = 0
 2/name = "Tileset.png 2"
-2/texture = ExtResource( 5 )
+2/texture = ExtResource( 6 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 489, 50, 220, 226 )
@@ -131,7 +132,7 @@ points = PoolVector2Array( 0, 0, 220, 0, 220, 226, 0, 226 )
 } ]
 2/z_index = 0
 3/name = "Tileset.png 3"
-3/texture = ExtResource( 5 )
+3/texture = ExtResource( 6 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 49, 276, 220, 226 )
@@ -148,7 +149,7 @@ points = PoolVector2Array( 0, 0, 220, 0, 220, 226, 0, 226 )
 } ]
 3/z_index = 0
 4/name = "Tileset.png 4"
-4/texture = ExtResource( 5 )
+4/texture = ExtResource( 6 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 269, 276, 220, 226 )
@@ -165,7 +166,7 @@ points = PoolVector2Array( 0, 0, 220, 0, 220, 226, 0, 226 )
 } ]
 4/z_index = 0
 5/name = "Tileset.png 5"
-5/texture = ExtResource( 5 )
+5/texture = ExtResource( 6 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 489, 276, 220, 226 )
@@ -182,7 +183,7 @@ points = PoolVector2Array( 0, 0, 220, 0, 220, 226, 0, 226 )
 } ]
 5/z_index = 0
 6/name = "Tileset.png 6"
-6/texture = ExtResource( 5 )
+6/texture = ExtResource( 6 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 49, 502, 220, 226 )
@@ -199,7 +200,7 @@ points = PoolVector2Array( 0, 0, 220, 0, 220, 226, 0, 226 )
 } ]
 6/z_index = 0
 7/name = "Tileset.png 7"
-7/texture = ExtResource( 5 )
+7/texture = ExtResource( 6 )
 7/tex_offset = Vector2( 0, 0 )
 7/modulate = Color( 1, 1, 1, 1 )
 7/region = Rect2( 269, 502, 220, 226 )
@@ -216,7 +217,7 @@ points = PoolVector2Array( 0, 0, 220, 0, 220, 226, 0, 226 )
 } ]
 7/z_index = 0
 8/name = "Tileset.png 8"
-8/texture = ExtResource( 5 )
+8/texture = ExtResource( 6 )
 8/tex_offset = Vector2( 0, 0 )
 8/modulate = Color( 1, 1, 1, 1 )
 8/region = Rect2( 489, 502, 220, 226 )
@@ -241,23 +242,31 @@ light_mask = 1024
 position = Vector2( 900.188, -310.159 )
 speed = Vector2( 3000, 4000 )
 
-[node name="Lantern" parent="." instance=ExtResource( 3 )]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2( 10.2994, -18.3154 )
+scale = Vector2( 0.5, 0.5 )
+stream = ExtResource( 3 )
+autoplay = true
+max_distance = 20000.0
+attenuation = 0.840896
+
+[node name="Lantern" parent="." instance=ExtResource( 4 )]
 light_mask = 1024
 position = Vector2( 5403.23, 1711.87 )
 
-[node name="Lantern2" parent="." instance=ExtResource( 3 )]
+[node name="Lantern2" parent="." instance=ExtResource( 4 )]
 light_mask = 1024
 position = Vector2( 9267.31, 2635.83 )
 
-[node name="Lantern3" parent="." instance=ExtResource( 3 )]
+[node name="Lantern3" parent="." instance=ExtResource( 4 )]
 light_mask = 1024
 position = Vector2( 3464.84, 4204.61 )
 
-[node name="Lantern4" parent="." instance=ExtResource( 3 )]
+[node name="Lantern4" parent="." instance=ExtResource( 4 )]
 light_mask = 1024
 position = Vector2( 7740.62, 6271.02 )
 
-[node name="DayNightSystem" parent="." instance=ExtResource( 4 )]
+[node name="DayNightSystem" parent="." instance=ExtResource( 5 )]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2( 754.218, 380.278 )
