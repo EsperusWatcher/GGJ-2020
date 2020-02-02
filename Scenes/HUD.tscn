@@ -20,9 +20,6 @@ custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 20.0
@@ -52,9 +49,6 @@ texture = ExtResource( 1 )
 margin_right = 20.0
 margin_bottom = 20.0
 texture = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Gauge" type="TextureProgress" parent="VBoxContainer/Bars/Bar"]
 margin_left = 24.0
@@ -83,9 +77,6 @@ texture = ExtResource( 3 )
 margin_right = 20.0
 margin_bottom = 20.0
 texture = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Number" type="Label" parent="VBoxContainer/Counters/CorruptCount/Background"]
 margin_left = 1.0
@@ -140,15 +131,13 @@ margin_right = 19.0
 margin_bottom = 37.0
 text = "0"
 
-[node name="Timer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Timer" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 68.0
 margin_right = 1880.0
 margin_bottom = 82.0
 
 [node name="time" type="Label" parent="VBoxContainer/Timer"]
-margin_right = 16.0
+margin_right = 1880.0
 margin_bottom = 14.0
-text = "00"
-align = 1
-valign = 1
+text = "0:0"
 [connection signal="value_changed" from="VBoxContainer/Bars/Bar/Gauge" to="VBoxContainer/Bars/Bar/Gauge" method="_on_Gauge_value_changed"]

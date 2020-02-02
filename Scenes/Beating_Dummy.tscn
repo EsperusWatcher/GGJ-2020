@@ -55,6 +55,7 @@ extents = Vector2( 10.2943, 11.1693 )
 extents = Vector2( 19.4397, 17.8133 )
 
 [node name="Beating dummy" type="KinematicBody2D"]
+scale = Vector2( 2, 2 )
 collision_layer = 2
 script = ExtResource( 1 )
 

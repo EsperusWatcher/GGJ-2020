@@ -7,9 +7,10 @@
 extents = Vector2( 12.7986, 54.0264 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 88.5999, 83.5855 )
+extents = Vector2( 18.1264, 57.4322 )
 
 [node name="Lantern" type="StaticBody2D"]
+scale = Vector2( 4, 6 )
 collision_layer = 4
 script = ExtResource( 1 )
 
