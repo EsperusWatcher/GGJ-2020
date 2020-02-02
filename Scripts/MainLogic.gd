@@ -20,16 +20,12 @@ func _ready():
 	dayNightSystem.setHUDlabel(HUD.get_node("VBoxContainer/Timer/time"))
 	dayStart()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func nightStart():
 	showMiniMap()
 	#while Input.is_action_just_pressed("Use"): # Waiting for skip minimap
 	hideMiniMap()
 	dayNightSystem.startNight()
-	player.speed = Vector2(900.0, 1000.0)
+	player.speed = Vector2(3000.0, 4000.0)
 	
 func dayStart():
 	player.speed = Vector2(0, 0)
@@ -37,7 +33,6 @@ func dayStart():
 	dayNightSystem.startDay()
 	corruptNewLantern()
 	regenLanternShield()
-	
 
 func corruptNewLantern():
 	var corruptedLanterns = []

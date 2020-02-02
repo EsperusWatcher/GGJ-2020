@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lantern-lit.ogg-57464682a5d380b3213e8e79da6338af.oggstr"
+
+[deps]
+
+source_file="res://Sounds/lantern-lit.ogg"
+dest_files=[ "res://.import/lantern-lit.ogg-57464682a5d380b3213e8e79da6338af.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

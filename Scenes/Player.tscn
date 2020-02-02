@@ -1,16 +1,58 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Textures/Player_idle_2.png" type="Texture" id=2]
-[ext_resource path="res://AnimationSheets/Test_attack_anim.png" type="Texture" id=3]
-[ext_resource path="res://Textures/Test_textures/Background.png" type="Texture" id=4]
-[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scripts/OnHit.gd" type="Script" id=6]
+[ext_resource path="res://Textures/light.png" type="Texture" id=2]
+[ext_resource path="res://Textures/Player_idle_2.png" type="Texture" id=3]
+[ext_resource path="res://Textures/PlayerWalk.png" type="Texture" id=4]
+[ext_resource path="res://Textures/attack.png" type="Texture" id=5]
+[ext_resource path="res://Textures/u.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/OnHit.gd" type="Script" id=8]
 
-[sub_resource type="Animation" id=1]
-resource_name = "Walking"
-length = 2.0
+[sub_resource type="Animation" id=10]
+resource_name = "Attack"
+length = 0.3
 step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("../AttackSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.07, 0.14, 0.17, 0.19, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../LeftHit/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.12, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../../RightHit/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.12, 0.26 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Idle"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -18,105 +60,37 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.7, 1.04, 1.46, 1.77 ),
+"times": PoolRealArray( 0, 0.5, 0.9, 1.3, 1.7 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 1, 2, 2 ]
 }
 
+[sub_resource type="Animation" id=1]
+resource_name = "Walking"
+length = 0.85
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("../WalkingSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.36, 0.51, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 3, 4, 5 ]
+}
+
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 8.80717, 16.5434 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "Strike"
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0.481628, -30.3155 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "Strike1"
-length = 0.25
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( -0.01, 0.02, 0.07, 0.12, 0.16, 0.2, 0.23 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.23 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true ]
-}
-
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 3.37087, 3.57008 )
-
-[sub_resource type="Animation" id=6]
-resource_name = "Strike"
-length = 0.25
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.03, 0.07, 0.11, 0.15, 0.2, 0.24 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.07, 0.22 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true ]
-}
+extents = Vector2( 4.13842, 5.33288 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 3.45074, 3.68915 )
+extents = Vector2( 3.49446, 5.33102 )
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 2.77505, 4.51474 )
@@ -130,15 +104,41 @@ script = ExtResource( 1 )
 speed = Vector2( 4500, 4000 )
 gravity = 10000.0
 
-[node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.299194, 0.299194 )
+[node name="Light2D" type="Light2D" parent="."]
+show_behind_parent = true
+light_mask = 3
 texture = ExtResource( 2 )
-hframes = 3
-frame = 2
-region_rect = Rect2( 20, 0, 20, 0 )
+texture_scale = 2.0
+color = Color( 0.737255, 0.756863, 0.14902, 1 )
+mode = 2
+range_height = 103.1
+range_item_cull_mask = 3
+shadow_color = Color( 0.721569, 0.690196, 0.196078, 0 )
+shadow_gradient_length = 1.0
+shadow_filter_smooth = 1.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+[node name="IdleSprite" type="Sprite" parent="Light2D"]
+scale = Vector2( 0.299194, 0.299194 )
+texture = ExtResource( 3 )
+hframes = 3
+frame = 1
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="Light2D/IdleSprite"]
+anims/Attack = SubResource( 10 )
+anims/Idle = SubResource( 11 )
 anims/Walking = SubResource( 1 )
+
+[node name="WalkingSprite" type="Sprite" parent="Light2D"]
+scale = Vector2( 0.299194, 0.299194 )
+texture = ExtResource( 4 )
+hframes = 6
+frame = 5
+
+[node name="AttackSprite" type="Sprite" parent="Light2D"]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
+hframes = 7
+frame = 5
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2( -20, 10 )
@@ -158,20 +158,8 @@ smoothing_speed = 9.0
 position = Vector2( -65.5013, 28.416 )
 scale = Vector2( 4, 4 )
 
-[node name="Sprite" type="Sprite" parent="LeftHit"]
-position = Vector2( -9.4563, -6.6701 )
-scale = Vector2( 0.632693, 0.684286 )
-texture = ExtResource( 3 )
-flip_h = true
-hframes = 6
-region_rect = Rect2( 125, 17, 27, 23 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="LeftHit/Sprite"]
-anims/Strike = SubResource( 3 )
-anims/Strike1 = SubResource( 4 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHit"]
-position = Vector2( -8.62948, -6.54321 )
+position = Vector2( -2.07991, -6.87908 )
 scale = Vector2( 4, 4 )
 shape = SubResource( 5 )
 disabled = true
@@ -180,17 +168,8 @@ disabled = true
 position = Vector2( 75.4417, 35.6354 )
 scale = Vector2( 4, 4 )
 
-[node name="Sprite" type="Sprite" parent="RightHit"]
-position = Vector2( 1.24272, -8.28888 )
-scale = Vector2( 0.690611, 0.733872 )
-texture = ExtResource( 3 )
-hframes = 6
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="RightHit/Sprite"]
-anims/Strike = SubResource( 6 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightHit"]
-position = Vector2( 1.03091, -8.63267 )
+position = Vector2( -7.0301, -8.63267 )
 scale = Vector2( 4, 4 )
 shape = SubResource( 7 )
 disabled = true
@@ -202,12 +181,12 @@ transform = Transform2D( 1, 0, 0, 1, 960, 540 )
 
 [node name="Sprite" type="Sprite" parent="BG_Layer"]
 position = Vector2( 7.78587, 5.75594 )
-scale = Vector2( 1.00527, 1.00527 )
-texture = ExtResource( 4 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 6 )
 
 [node name="HUD_Layer" type="CanvasLayer" parent="."]
 
-[node name="HUD" parent="HUD_Layer" instance=ExtResource( 5 )]
+[node name="HUD" parent="HUD_Layer" instance=ExtResource( 7 )]
 margin_left = -3.47046
 margin_top = -1.16539
 margin_right = 160.529
@@ -217,7 +196,7 @@ margin_bottom = 82.8346
 "player",
 ]]
 scale = Vector2( 4, 4 )
-script = ExtResource( 6 )
+script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -3.78443, 1.9027 )
