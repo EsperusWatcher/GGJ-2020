@@ -267,6 +267,66 @@ position = Vector2( 3464.84, 4204.61 )
 light_mask = 1024
 position = Vector2( 7740.62, 6271.02 )
 
+[node name="Lantern5" parent="." instance=ExtResource( 4 )]
+light_mask = 1024
+position = Vector2( 11893.7, 7936.16 )
+
+[node name="Lantern6" parent="." instance=ExtResource( 4 )]
+light_mask = 1024
+position = Vector2( 16066.3, 6212.25 )
+
+[node name="Lantern7" parent="." instance=ExtResource( 4 )]
+light_mask = 1024
+position = Vector2( 16007.5, 1941.67 )
+
+[node name="Lantern8" parent="." instance=ExtResource( 4 )]
+light_mask = 1024
+position = Vector2( 23157.8, 1530.28 )
+
+[node name="Lantern9" parent="." instance=ExtResource( 4 )]
+light_mask = 1024
+position = Vector2( 24548.7, 7916.57 )
+
+[node name="Lantern10" parent="." instance=ExtResource( 4 )]
+light_mask = 1024
+position = Vector2( 15674.5, 9660.07 )
+
+[node name="Lantern11" parent="." instance=ExtResource( 4 )]
+light_mask = 1024
+position = Vector2( 15557, 13440.9 )
+
+[node name="Lantern12" parent="." instance=ExtResource( 4 )]
+light_mask = 1024
+position = Vector2( 22746.4, 13969.8 )
+
+[node name="Lantern13" parent="." instance=ExtResource( 4 )]
+light_mask = 1024
+position = Vector2( 24960.1, 11364.4 )
+
+[node name="Lantern14" parent="." instance=ExtResource( 4 )]
+light_mask = 1024
+position = Vector2( 8210.77, 13656.4 )
+
+[node name="Lantern15" parent="." instance=ExtResource( 4 )]
+light_mask = 1024
+position = Vector2( 2000.8, 13715.2 )
+
+[node name="Lantern16" parent="." instance=ExtResource( 4 )]
+light_mask = 1024
+position = Vector2( 1080.07, 9620.89 )
+
+[node name="Lantern17" parent="." instance=ExtResource( 4 )]
+light_mask = 1024
+position = Vector2( 5115.58, 12559.4 )
+
+[node name="Lantern18" parent="." instance=ExtResource( 4 )]
+light_mask = 1024
+position = Vector2( 5115.58, 16026.8 )
+
+[node name="Lantern19" parent="." instance=ExtResource( 4 )]
+light_mask = 1024
+position = Vector2( 20356.4, 8051.9 )
+
 [node name="DayNightSystem" parent="." instance=ExtResource( 5 )]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
