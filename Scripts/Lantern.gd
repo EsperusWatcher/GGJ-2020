@@ -2,6 +2,7 @@ extends StaticBody2D
 
 signal CanLit(lantern)
 signal CannotLit
+signal warning
 
 const enemyInst = preload("res://Scenes/Beating_Dummy.tscn")
 const extinctLantern = preload("res://Textures/Test_textures/Test_Extinct_lantern.png")
@@ -9,16 +10,20 @@ const litLantern = preload("res://Textures/Test_textures/Test_Lit_lantern.png")
 const corruptLantern = preload("res://Textures/Test_textures/Test_Corrupt_lantern.png")
 
 var dayNightSystem
+var AIsystem
 
 var spawnTimer : Timer 
 var maxShield : int = 100
-var shield : int = 100
-var spawnRate : float = 4
-var countOfEnemiesInOneTime : int = 5
 var spawnPosition : int = 1
 var countOfChildOnStart : int = 0
 var canSpawn : bool = false
-const damageTaken = 50
+
+export var damageTaken = 50
+export var shield : int = 100
+export var spawnRate : float = 4
+export var countOfEnemiesInOneTime : int = 5
+
+var stateForEnemys = 0
 
 enum corruptStates {LIT, EXTINCT, CORRUPT}
 var corruptState
@@ -35,6 +40,7 @@ func _ready():
 	dayNightSystem = get_parent().get_node("DayNightSystem")
 	dayNightSystem.connect("nightEnd", self, "nightEnd")
 	dayNightSystem.connect("dayEnd", self, "dayEnd")
+	AIsystem = get_parent().get_node("AIsystem")
 
 
 func _process(delta):
@@ -46,6 +52,7 @@ func spawnNewEnemies(delta) :
 	if (spawnTimer.time_left == 0 ) : 
 		if(get_child_count() < countOfEnemiesInOneTime + countOfChildOnStart):
 			var enemy = enemyInst.instance()
+			enemy.state = stateForEnemys
 			enemy.connect("death", self, "enemyDeath")
 			var spawnerName : String = "SpawnPosition" + str(spawnPosition)
 			var position : Vector2 = get_node(spawnerName).position
@@ -54,6 +61,7 @@ func spawnNewEnemies(delta) :
 			if(spawnPosition > 4):
 				spawnPosition = 1
 			self.add_child(enemy)
+			AIsystem.addNewEnemy(enemy)
 		spawnTimer.start()
 
 func enemyDeath():
@@ -96,7 +104,7 @@ func nightEnd():
 	killAndRegen()
 	canSpawn = false
 
-func killAndRegen(): # Kill all minios remainig - taking damage - and regen this amount hp
+func killAndRegen(): # Kill all minions remainig - taking damage - and regen this amount hp
 	for i in get_children():
 		if i is KinematicBody2D:
 			i.takeDamage()
@@ -105,3 +113,10 @@ func killAndRegen(): # Kill all minios remainig - taking damage - and regen this
 func playerTryLit():
 	if corruptState == corruptStates.EXTINCT:
 		lit()
+
+
+func _on_warningZone_area_entered(area):
+	if(area.is_in_group("player")):
+		print("SetWarning")
+		emit_signal("warning")
+		stateForEnemys = 1

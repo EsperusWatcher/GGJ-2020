@@ -55,7 +55,6 @@ extents = Vector2( 10.2943, 11.1693 )
 extents = Vector2( 19.4397, 17.8133 )
 
 [node name="Beating dummy" type="KinematicBody2D"]
-scale = Vector2( 2, 2 )
 collision_layer = 2
 script = ExtResource( 1 )
 
@@ -71,6 +70,7 @@ anims/Boom = SubResource( 1 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2( 6.65481, -4.5644 )
 shape = SubResource( 2 )
+disabled = true
 
 [node name="DeathArea" type="Area2D" parent="." groups=[
 "hit",
