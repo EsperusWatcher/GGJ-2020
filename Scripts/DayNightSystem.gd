@@ -6,6 +6,7 @@ signal dayEnd
 var nightTimer : Timer
 var dayTimer : Timer
 var isNight : bool
+var timerLabel : Label # label to change timer on screen
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,4 +46,7 @@ func startDay():
 	dayTimer.start()
 
 func printTimeLeft(timer : Timer):
-	print(timer.time_left)
+	timerLabel.set_text(str(int(timer.time_left)))
+
+func setHUDlabel(newlabel : Label):
+	timerLabel = newlabel

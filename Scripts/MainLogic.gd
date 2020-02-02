@@ -5,6 +5,7 @@ var playerInst = preload("res://Scenes/Player.tscn")
 var dayNightSystem
 var player
 var lanterns = []
+var HUD
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,9 +13,11 @@ func _ready():
 	dayNightSystem.connect("nightEnd", self, "dayStart")
 	dayNightSystem.connect("dayEnd", self, "nightStart")
 	player = get_node("Player")
+	HUD = player.get_node("HUD_Layer/HUD")
 	for i in get_children():
 		if i is StaticBody2D:
 			lanterns.append(i)
+	dayNightSystem.setHUDlabel(HUD.get_node("VBoxContainer/Timer/time"))
 	dayStart()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

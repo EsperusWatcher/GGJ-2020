@@ -36,7 +36,7 @@ func _ready():
 	get_node("HUD_Layer/HUD/VBoxContainer/Bars/Bar/Gauge").set_value(hp)
 	
 	var allScene = get_parent().get_children()
-	for i in allScene:
+	for i in allScene: # Here will be errors in terminal because we try to connect to all of object and nam pohui esli ne srabotalo
 		i.connect("CanLit", self, "enterLanternArea")
 		i.connect("CannotLit", self, "exitLanternArea")
 
