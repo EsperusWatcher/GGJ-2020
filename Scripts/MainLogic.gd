@@ -21,6 +21,7 @@ func _ready():
 	dayStart()
 
 func nightStart():
+	corruptAllLanterns()
 	showMiniMap()
 	#while Input.is_action_just_pressed("Use"): # Waiting for skip minimap
 	hideMiniMap()
@@ -28,13 +29,14 @@ func nightStart():
 	player.speed = Vector2(3000.0, 4000.0)
 	
 func dayStart():
+	litAllLanterns()
 	player.speed = Vector2(0, 0)
 	player.position = playerInst.instance().position
 	dayNightSystem.startDay()
-	corruptNewLantern()
+	# corruptNewLantern()
 	regenLanternShield()
 
-func corruptNewLantern():
+func corruptNewLantern(): #LEGACY
 	var corruptedLanterns = []
 	for i in lanterns: # make all extinct lantern - corrupted
 			if i.corruptState == i.corruptStates.EXTINCT:
@@ -65,6 +67,13 @@ func corruptNewLantern():
 				if lanterns[j].corruptState == lanterns[j].corruptStates.LIT:
 					lanterns[j].extinct()
 
+func corruptAllLanterns():
+	for i in lanterns:
+		i.corrupt()
+		
+func litAllLanterns():
+	for i in lanterns:
+		i.lit()
 
 func regenLanternShield():
 	for i in lanterns:

@@ -64,6 +64,10 @@ frame = 7
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Boom = SubResource( 1 )
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 6.65481, -4.5644 )
+shape = SubResource( 2 )
+disabled = true
 [node name="DeathArea" type="Area2D" parent="." groups=[
 "hit",
 ]]
