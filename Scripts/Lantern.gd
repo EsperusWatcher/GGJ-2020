@@ -24,6 +24,8 @@ export var spawnRate : float = 2
 export var countOfEnemiesInOneTime : int = 5
 export var timerIncreaseTime : float = 15
 
+var LitArea: CollisionShape2D
+
 var stateForEnemys = 0
 
 enum corruptStates {LIT, EXTINCT, CORRUPT}
@@ -43,16 +45,13 @@ func _ready():
 	dayNightSystem = get_parent().get_node("DayNightSystem")
 	dayNightSystem.connect("nightEnd", self, "nightEnd")
 	dayNightSystem.connect("dayEnd", self, "dayEnd")
-
+	
 	AIsystem = get_parent().get_node("AIsystem")
 	lightSource = get_node("Light2D")
-
-
 
 func _process(delta):
 	if(corruptState == corruptStates.CORRUPT) and canSpawn:
 		spawnNewEnemies(delta)
-
 
 func spawnNewEnemies(delta) :
 	if (spawnTimer.time_left == 0 ) : 
@@ -71,6 +70,7 @@ func spawnNewEnemies(delta) :
 		spawnTimer.start()
 
 func enemyDeath():
+	get_parent().increaseScore(100)
 	if corruptState == corruptStates.CORRUPT:
 		decreaseCorrupt(damageTaken)
 
@@ -102,6 +102,7 @@ func extinct():
 
 func lit():
 	corruptState = corruptStates.LIT
+	get_parent().increaseScore(1000)
 	var sprite : Sprite = get_node("Light2D/Sprite")
 	lightSource.set("Color", Color( 1, 1, 0, 1 ))
 	lightSource.set("enabled", true)	
@@ -125,16 +126,14 @@ func playerTryLit():
 		increaseNightTimer()
 		lit()
 
-
-func _on_warningZone_area_entered(area):
-	if(area.is_in_group("player")):
-		print("SetWarning")
-		emit_signal("warning")
-		stateForEnemys = 1
-
 func increaseNightTimer():
 	var buf = dayNightSystem.nightTimer.time_left
 	dayNightSystem.nightTimer.stop()
 	dayNightSystem.nightTimer.set_wait_time( buf + timerIncreaseTime)
 	dayNightSystem.nightTimer.start()
 
+func _on_Area2D_area_entered(area):
+	if(area.is_in_group("player")):
+		print("SetWarning")
+		emit_signal("warning")
+		stateForEnemys = 1

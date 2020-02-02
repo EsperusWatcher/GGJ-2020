@@ -6,6 +6,7 @@ var dayNightSystem
 var player
 var lanterns = []
 var HUD
+var score = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -67,6 +68,11 @@ func corruptNewLantern(): #LEGACY
 				if lanterns[j].corruptState == lanterns[j].corruptStates.LIT:
 					lanterns[j].extinct()
 
+func _process(delta):
+	var score_hud = HUD.get_node("VBoxContainer/Score/score")
+	score_hud.set_text("Score: " + str(score))
+	
+
 func corruptAllLanterns():
 	for i in lanterns:
 		i.corrupt()
@@ -74,6 +80,7 @@ func corruptAllLanterns():
 func litAllLanterns():
 	for i in lanterns:
 		i.lit()
+	score = 0
 
 func regenLanternShield():
 	for i in lanterns:
@@ -84,4 +91,7 @@ func showMiniMap():
 	
 func hideMiniMap():
 	pass
+
+func increaseScore(update):
+	score += update
 	

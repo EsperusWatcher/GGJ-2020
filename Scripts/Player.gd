@@ -88,7 +88,7 @@ func _process(delta):
 func take_damage():
 	if invincible_timer.get("time_left") == 0:
 		print("hp down")
-		hp -= 50
+		hp -= 10
 		if hp <= 0:
 			BG_sprite.set_texture(end_game)
 			top_layer.set("layer", 100)

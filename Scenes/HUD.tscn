@@ -1,12 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Textures/HUD/Hp_label_BG.png" type="Texture" id=1]
 [ext_resource path="res://Textures/HUD/HP_label.png" type="Texture" id=2]
 [ext_resource path="res://Textures/HUD/HP_Bar_bg.png" type="Texture" id=3]
 [ext_resource path="res://Textures/HUD/HP_Bar_full.png" type="Texture" id=4]
-[ext_resource path="res://Textures/HUD/Lit_lanterns.png" type="Texture" id=5]
-[ext_resource path="res://Textures/HUD/Corrupt_lanterns.png" type="Texture" id=6]
-[ext_resource path="res://Textures/HUD/Extinct_lanterns.png" type="Texture" id=7]
 
 [node name="HUD" type="MarginContainer"]
 anchor_right = 1.0
@@ -58,86 +55,23 @@ value = 50.0
 texture_under = ExtResource( 3 )
 texture_progress = ExtResource( 4 )
 
-[node name="Counters" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Timer" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 24.0
 margin_right = 1880.0
-margin_bottom = 64.0
-
-[node name="CorruptCount" type="MarginContainer" parent="VBoxContainer/Counters"]
-margin_right = 20.0
-margin_bottom = 40.0
-
-[node name="Background" type="NinePatchRect" parent="VBoxContainer/Counters/CorruptCount"]
-margin_right = 20.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 20, 20 )
-texture = ExtResource( 3 )
-
-[node name="Title" type="TextureRect" parent="VBoxContainer/Counters/CorruptCount/Background"]
-margin_right = 20.0
-margin_bottom = 20.0
-texture = ExtResource( 5 )
-
-[node name="Number" type="Label" parent="VBoxContainer/Counters/CorruptCount/Background"]
-margin_left = 1.0
-margin_top = 23.0
-margin_right = 18.0
-margin_bottom = 37.0
-text = "0"
-
-[node name="ClearCount" type="MarginContainer" parent="VBoxContainer/Counters"]
-margin_left = 24.0
-margin_right = 44.0
-margin_bottom = 40.0
-
-[node name="Background" type="NinePatchRect" parent="VBoxContainer/Counters/ClearCount"]
-margin_right = 20.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 20, 20 )
-texture = ExtResource( 3 )
-
-[node name="Title" type="TextureRect" parent="VBoxContainer/Counters/ClearCount/Background"]
-margin_right = 20.0
-margin_bottom = 20.0
-texture = ExtResource( 6 )
-
-[node name="Number" type="Label" parent="VBoxContainer/Counters/ClearCount/Background"]
-margin_left = 1.0
-margin_top = 23.0
-margin_right = 19.0
-margin_bottom = 37.0
-text = "0"
-
-[node name="ExtinctCount" type="MarginContainer" parent="VBoxContainer/Counters"]
-margin_left = 48.0
-margin_right = 68.0
-margin_bottom = 40.0
-
-[node name="Background" type="NinePatchRect" parent="VBoxContainer/Counters/ExtinctCount"]
-margin_right = 20.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 20, 40 )
-texture = ExtResource( 3 )
-
-[node name="Title" type="TextureRect" parent="VBoxContainer/Counters/ExtinctCount/Background"]
-margin_right = 20.0
-margin_bottom = 20.0
-texture = ExtResource( 7 )
-
-[node name="Number" type="Label" parent="VBoxContainer/Counters/ExtinctCount/Background"]
-margin_left = 1.0
-margin_top = 23.0
-margin_right = 19.0
-margin_bottom = 37.0
-text = "0"
-
-[node name="Timer" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 68.0
-margin_right = 1880.0
-margin_bottom = 82.0
+margin_bottom = 38.0
 
 [node name="time" type="Label" parent="VBoxContainer/Timer"]
 margin_right = 1880.0
 margin_bottom = 14.0
 text = "0:0"
+
+[node name="Score" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 42.0
+margin_right = 1880.0
+margin_bottom = 56.0
+
+[node name="score" type="Label" parent="VBoxContainer/Score"]
+margin_right = 1880.0
+margin_bottom = 14.0
+text = "Score: 0"
 [connection signal="value_changed" from="VBoxContainer/Bars/Bar/Gauge" to="VBoxContainer/Bars/Bar/Gauge" method="_on_Gauge_value_changed"]

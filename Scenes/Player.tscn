@@ -146,6 +146,7 @@ scale = Vector2( 4, 4 )
 shape = SubResource( 9 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+z_index = 6
 offset = Vector2( -3000, -1200 )
 anchor_mode = 0
 current = true
