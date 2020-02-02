@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Player_idle_2.png" type="Texture" id=2]
 [ext_resource path="res://AnimationSheets/Test_attack_anim.png" type="Texture" id=3]
-[ext_resource path="res://Textures/Test_textures/Test_Bg.png" type="Texture" id=4]
+[ext_resource path="res://Textures/Test_textures/Background.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/OnHit.gd" type="Script" id=6]
 
@@ -146,6 +146,8 @@ scale = Vector2( 4, 4 )
 shape = SubResource( 9 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( -3000, -1200 )
+anchor_mode = 0
 current = true
 zoom = Vector2( 3, 3 )
 limit_smoothed = true
@@ -157,8 +159,8 @@ position = Vector2( -65.5013, 28.416 )
 scale = Vector2( 4, 4 )
 
 [node name="Sprite" type="Sprite" parent="LeftHit"]
-position = Vector2( 0.481628, -30.3155 )
-scale = Vector2( 0.58129, 0.689998 )
+position = Vector2( -9.4563, -6.6701 )
+scale = Vector2( 0.632693, 0.684286 )
 texture = ExtResource( 3 )
 flip_h = true
 hframes = 6
@@ -206,10 +208,10 @@ texture = ExtResource( 4 )
 [node name="HUD_Layer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="HUD_Layer" instance=ExtResource( 5 )]
-margin_left = 4.00843
-margin_top = 1.19661
-margin_right = 168.008
-margin_bottom = 85.1967
+margin_left = -3.47046
+margin_top = -1.16539
+margin_right = 160.529
+margin_bottom = 82.8346
 
 [node name="Area2D" type="Area2D" parent="." groups=[
 "player",
@@ -218,7 +220,7 @@ scale = Vector2( 4, 4 )
 script = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -3.56739, 1.68566 )
+position = Vector2( -3.78443, 1.9027 )
 scale = Vector2( 4, 4 )
 shape = SubResource( 8 )
 

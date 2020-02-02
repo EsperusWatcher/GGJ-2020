@@ -77,7 +77,6 @@ func _physics_process(delta):
 
 	if velocity.x != 0:
 		anim_node.stop(1)
-		anim_node.clear_caches()
 	else:
 		anim_node.play("Walking")
 		
