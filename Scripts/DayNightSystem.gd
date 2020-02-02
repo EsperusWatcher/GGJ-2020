@@ -13,7 +13,8 @@ var secondsReamaining
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	nightTimer = get_node("nightTimer")
-	nightTimer.wait_time = 30
+
+	nightTimer.wait_time = 120
 	nightTimer.one_shot = true
 	
 	dayTimer = get_node("dayTimer")

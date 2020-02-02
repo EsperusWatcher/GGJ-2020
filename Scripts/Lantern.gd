@@ -29,6 +29,8 @@ var stateForEnemys = 0
 enum corruptStates {LIT, EXTINCT, CORRUPT}
 var corruptState
 
+var lightSource: Light2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	corruptState = corruptStates.CORRUPT
@@ -36,12 +38,15 @@ func _ready():
 	spawnTimer = get_node("SpawnTimer")
 	spawnTimer.wait_time = spawnRate
 	spawnTimer.start()
-	var sprite : Sprite = get_node("Sprite")
+	var sprite : Sprite = get_node("Light2D/Sprite")
 	sprite.set_texture(litLantern)
 	dayNightSystem = get_parent().get_node("DayNightSystem")
 	dayNightSystem.connect("nightEnd", self, "nightEnd")
 	dayNightSystem.connect("dayEnd", self, "dayEnd")
+
 	AIsystem = get_parent().get_node("AIsystem")
+	lightSource = get_node("Light2D")
+
 
 
 func _process(delta):
@@ -85,17 +90,21 @@ func _on_LitLatternArea_area_exited(area):
 	
 func corrupt():
 	corruptState = corruptStates.CORRUPT
-	var sprite : Sprite = get_node("Sprite")
+	var sprite : Sprite = get_node("Light2D/Sprite")
+	lightSource.set("enabled", false)
 	sprite.set_texture(corruptLantern)
 	
 func extinct():
 	corruptState = corruptStates.EXTINCT
-	var sprite : Sprite = get_node("Sprite")
+	var sprite : Sprite = get_node("Light2D/Sprite")
+	lightSource.set("enabled", false)
 	sprite.set_texture(extinctLantern)
 
 func lit():
 	corruptState = corruptStates.LIT
-	var sprite : Sprite = get_node("Sprite")
+	var sprite : Sprite = get_node("Light2D/Sprite")
+	lightSource.set("Color", Color( 1, 1, 0, 1 ))
+	lightSource.set("enabled", true)	
 	sprite.set_texture(litLantern)
 
 func dayEnd():

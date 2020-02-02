@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Beating_Dummy.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Test_textures/Test_enemy_attack_anim.png" type="Texture" id=2]
@@ -45,9 +45,6 @@ tracks/2/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 26.7123, 29.6953 )
-
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10.2943, 11.1693 )
 
@@ -71,7 +68,6 @@ anims/Boom = SubResource( 1 )
 position = Vector2( 6.65481, -4.5644 )
 shape = SubResource( 2 )
 disabled = true
-
 [node name="DeathArea" type="Area2D" parent="." groups=[
 "hit",
 ]]

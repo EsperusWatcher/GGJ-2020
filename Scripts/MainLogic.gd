@@ -20,10 +20,6 @@ func _ready():
 	dayNightSystem.setHUDlabel(HUD.get_node("VBoxContainer/Timer/time"))
 	dayStart()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func nightStart():
 	corruptAllLanterns()
 	showMiniMap()
@@ -39,7 +35,6 @@ func dayStart():
 	dayNightSystem.startDay()
 	# corruptNewLantern()
 	regenLanternShield()
-	
 
 func corruptNewLantern(): #LEGACY
 	var corruptedLanterns = []
