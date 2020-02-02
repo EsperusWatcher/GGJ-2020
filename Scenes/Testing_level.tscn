@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Textures/Test_tile.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Lantern.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/MainLogic.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/DayNightSystem.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 120, 0, 120, 120, 0, 120 )
@@ -26,6 +28,7 @@ points = PoolVector2Array( 0, 0, 120, 0, 120, 120, 0, 120 )
 0/z_index = 0
 
 [node name="Testing_level" type="Node"]
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_horizontal_guides_": [ -844.005 ]
 }
@@ -43,3 +46,11 @@ position = Vector2( 103.08, 60.8391 )
 
 [node name="Lantern" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1252.99, 535.986 )
+
+[node name="Lantern2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2483.32, -66.8749 )
+
+[node name="Lantern3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 3071.83, 659.019 )
+
+[node name="DayNightSystem" parent="." instance=ExtResource( 5 )]

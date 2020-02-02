@@ -54,7 +54,8 @@ func _process(delta):
 			left_attack.play("Strike1")
 	
 	if Input.is_action_just_pressed("Use"):
-		lanternInArea.lit()
+		if lanternInArea != null:
+			lanternInArea.playerTryLit()
 
 func take_damage():
 	if invincible_timer.get("time_left") == 0:

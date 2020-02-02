@@ -28,3 +28,4 @@ func _physics_process(delta):
 
 func takeDamage():
 	emit_signal("death")
+	queue_free()
