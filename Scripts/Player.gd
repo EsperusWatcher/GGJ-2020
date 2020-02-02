@@ -76,11 +76,10 @@ func _physics_process(delta):
 	velocity = calculate_move_velocity(velocity, speed, direction)
 
 	if velocity.x != 0:
-		anim_node.play("Walking")
-	else:
 		anim_node.stop(1)
-		anim_node.clear_caches()
-
+	else:
+		anim_node.play("Walking")
+		
 	velocity = move_and_slide(velocity, FLOOR_NORMAL)
 	
 func get_direction() -> Vector2:
